@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box2">
+        <fieldset>
+            <legend>Delete User</legend>
+                <div class=AlignCenter>
+                    <form method="POST" >
+                        {% csrf_token %}
+                        {{ form }}
+                        <p>Do you really want to delete "{{ user.username }}"?</p>
+                        <p></p>
+
+                        <button class="button-list" type="submit">Yes</button>
+                    </form>
+                    <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">No</a>
+                </div>
+        </fieldset>
+    </div>
+{% endblock %}

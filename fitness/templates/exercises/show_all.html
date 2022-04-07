@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+    {% if video %}
+        {% for ex in video.values %}
+                <div class="FitnessCover">
+                    <div class="card-box">
+                        <div class=AlignCenter>
+                            <p>Exercise name: {{ ex.name }}</p>
+                            <p>Category: {{ ex.category }}</p>
+                            <p>Description: {{ ex.description }}</p>
+                            <iframe width="340" height="220" src="{{ ex.youtube_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    {% else %}
+        <div class="card-box2">
+            <fieldset>
+                <legend>Video</legend>
+                    <div class=AlignCenter>
+                        <h1>No Exercise videos added yet</h1>
+                        <p></p>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">Go to Dashboard</a>
+                    </div>
+            </fieldset>
+        </div>
+    {% endif %}
+{% endblock %}

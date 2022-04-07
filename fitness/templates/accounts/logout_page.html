@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box2">
+        <div class=AlignCenter>
+            <form method="POST" >
+                <fieldset>
+                    <legend>Logout</legend>
+                    {% csrf_token %}
+                    {{ form }}
+                    <p>Hello {{ user.username }} !</p>
+                    <p>Do you really want to logout?</p>
+                    <p></p>
+                   <li> <a style = "color: powderblue; text-decoration: none; "href="{% url 'logout' %}">Yes</a></li>
+                   <li> <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">No</a></li>
+                 </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    <h1>Do you really want to logout?</h1>#}
+{#    {% if user.is_authenticated %}#}
+{#        <h1>Hey {{ user.username }}  !</h1>#}
+{#        <h1>Do you really want to logout?</h1>#}
+{#        <a href="{% url 'logout' %}">Yes</a>#}
+{#        <a href="{% url 'dashboard' %}">Nope</a>#}
+{#    {% endif %}#}
+{#</form>#}

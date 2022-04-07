@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box2">
+        <div class="AlignCenter">
+            <form method="POST">
+                <fieldset>
+                    <legend>Exercise</legend>
+                    {% csrf_token %}
+                    <p>You have successfully created your exercise!</p>
+                    <p></p>
+                    <li><a style = "color: powderblue; text-decoration: none;" href="{% url 'show workout' %}">Go to Workout</a></li>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

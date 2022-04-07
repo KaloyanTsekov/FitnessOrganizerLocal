@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box3">
+        <div class=AlignCenter>
+            <form method="POST" >
+                <fieldset>
+                    <legend>Create Exercise</legend>
+                    {% csrf_token %}
+                    {{ form }}
+{#                    {{ trainings }}#}
+                     <button class="button-list">Create</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

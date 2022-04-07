@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+    {% if video %}
+        {% for ex in video %}
+                <div class="FitnessCover">
+                    <div class="card-box">
+                        <div class=AlignCenter>
+                            <p>Exercise name: {{ ex.name }}</p>
+                            <p>Category: {{ ex.category }}</p>
+                            <p>Description: {{ ex.description }}</p>
+                            <iframe width="340" height="220" src="{{ ex.youtube_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% if request.user.is_staff or request.user.is_superuser %}
+                                <form action="{% url 'edit videos' ex.id %}">
+                                {% csrf_token %}
+                                <button class="button-list" type="submit" >Edit</button>
+                                </form>
+
+                                <form method="post" action="{% url 'delete videos' ex.id %}">
+                                {% csrf_token %}
+                                <button class="button-list" type="submit">Delete</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    {% else %}
+        <div class="card-box2">
+            <fieldset>
+                <legend>Video</legend>
+                    <div class=AlignCenter>
+                        <h1>No Chest videos added yet</h1>
+                        <p></p>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'show videos' %}">Go Back</a>
+                        {% if request.user.is_staff or request.user.is_superuser %}
+                            <p></p>
+                            <p></p>
+                            <a style = "color: powderblue; text-decoration: none; "href="{% url 'create videos' %}">Create:</a>
+                        {% endif %}
+                    </div>
+            </fieldset>
+        </div>
+    {% endif %}
+{% endblock %}

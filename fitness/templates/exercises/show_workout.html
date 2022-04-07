@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+    {% if workouts %}
+        {% for workout in workouts %}
+                <div class="FitnessCover">
+                    <div class="card-box">
+                         <fieldset>
+                            <legend>Workout</legend>
+                        <div class=AlignCenter>
+                            <p>Name: {{ workout.name }}</p>
+                            <p>Day: {{ workout.day }}</p>
+                            <p>Category: {{ workout.category }}</p>
+
+                            <form action="{% url 'exercise' workout.id %}">
+                                {% csrf_token %}
+                                <button class="button-list" type="submit" >Plan</button>
+                            </form>
+
+
+                            <form action="{% url 'edit workout' workout.id %}">
+                                {% csrf_token %}
+                                <button class="button-list" type="submit" >Edit</button>
+                            </form>
+                            <form method="post" action="{% url 'delete workout' workout.id %}">
+                                {% csrf_token %}
+                                <button class="button-list" type="submit">Delete</button>
+                            </form>
+                        </div>
+                         </fieldset>
+                    </div>
+                </div>
+        {% endfor %}
+    {% else %}
+        <div class="card-box2">
+            <fieldset>
+                <legend>Workout</legend>
+                    <div class=AlignCenter>
+                        <h1>No Workouts added yet</h1>
+                        <p></p>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">Go Home</a>
+                        <p></p>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'create workout' %}">Create:</a>
+                        {% endif %}
+                    </div>
+            </fieldset>
+        </div>
+{% endblock %}

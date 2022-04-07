@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+            <div class=AlignCenter>
+                <div class="card-box2">
+                    <fieldset>
+                        <legend>Workout Options</legend>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'create workout' %}">Create Workout</a>
+                        <p><a style = "color: powderblue; text-decoration: none; "href="{% url 'show workout'  %}">Workouts</a></p>
+                        <p><a style = "color: powderblue; text-decoration: none; "href="{% url 'create exercise' %}">Create Exercise</a></p>
+                    </fieldset>
+                </div>
+            </div>
+{% endblock %}

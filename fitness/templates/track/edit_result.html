@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <form method="POST" >
+            <div class="card-box3">
+                <fieldset>
+                    <legend>Edit exercise</legend>
+
+            {% csrf_token %}
+
+            {{ form }}
+             <button class="add-sport" type="submit">Edit</button>
+                </fieldset>
+            </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+    <div class=AlignCenter>
+        <div class="card-box2">
+            <fieldset>
+                <legend>Admin Options</legend>
+                <a style = "color: powderblue; text-decoration: none; "href="{% url 'create videos' %}">Create Videos</a>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}

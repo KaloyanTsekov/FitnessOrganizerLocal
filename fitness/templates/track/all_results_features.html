@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+            <div class=AlignCenter>
+                <div class="card-box2">
+                    <fieldset>
+                        <legend>Result Options</legend>
+                        <a style = "color: powderblue; text-decoration: none; "href="{% url 'create result' %}">Create Result</a>
+                        <p><a style = "color: powderblue; text-decoration: none; "href="{% url 'show result'  %}">Results</a></p>
+                    </fieldset>
+                </div>
+            </div>
+{% endblock %}

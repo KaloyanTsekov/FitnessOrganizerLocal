@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {% if request.user.is_staff or request.user.is_superuser %}
+        <form method="POST" >
+            <div class="card-box3">
+                <fieldset>
+                    <legend>Create Video exercise</legend>
+                            {{ form }}
+                            {% csrf_token %}
+                    <button class="add-sport" type="submit">Create</button>
+                </fieldset>
+            </div>
+        </form>
+    {% else %}
+        <div class="card-box3">
+            <fieldset>
+                <legend>Create exercise</legend>
+                    <h3>You don't have permissions to perform this action.</h3>
+                    <p></p>
+                    {% csrf_token %}
+                    <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">Home</a>
+            </fieldset>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+{{ form }}
+{% csrf_token %}
+    <div class="card-box4">
+        <fieldset>
+            <legend>{{ workout.name }}</legend>
+                <div class=AlignCenter>
+                            <p></p>
+                    {% for exercise in exercises %}
+                        <p></p>
+                        <table >
+                            <tr>
+                                <th>Exercise:</th><td>{{ exercise.name }}</td>
+                                <th>Weight:</th><td>{{ exercise.weight }}kg</td>
+                                <th>Series:</th><td>{{ exercise.series }}x</td>
+                                <th>Reps:</th><td>{{ exercise.reps }}x</td>
+                                <tr></tr>
+                            </tr>
+                        </table>
+                    {% endfor %}
+                </div>
+        </fieldset>
+    </div>
+{% endblock %}

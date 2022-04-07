@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Fitness app</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <img src="{% static 'images/dumbel.jpg' %}" >
+            <a href="{% url 'dashboard' %}">Home</a>
+
+            <img src="{% static 'images/tv-watch.jpg' %}" >
+            <a href="{% url 'show videos' %}">Watch</a><ul></ul>
+            <ul>
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin features'  %}">Admin</a>
+                </li>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'results features' %}">Your Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'workout features' %}">Workout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile features' %}">Profile</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-lg btn-secondary">Register</a>
+                </li>
+            {% endif %}
+            </ul>
+        </nav>
+    </header>
+        {% block page_content %}
+        {% endblock %}
+    <footer>
+        <div>
+            &copy;Kaloyan Tsekov
+        </div>
+    </footer>
+</div>
+</body>
+</html>

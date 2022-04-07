@@ -1,0 +1,77 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+        {{ form }}
+        {% csrf_token %}
+    {% if not results %}
+        <div class="card-box2">
+           <div class=AlignCenter>
+                <form method="POST">
+                    <fieldset>
+                        <legend>Results</legend>
+                            {% csrf_token %}
+                            <p>No Results added yet</p>
+                            <p></p>
+                        <li><a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">Go to Dashboard</a></li>
+                    </fieldset>
+                </form>
+           </div>
+        </div>
+    {% endif %}
+    {% for result in results %}
+
+         <div class="FitnessCover">
+                <div class="card-box">
+                    <fieldset>
+                <legend>Results</legend>
+                    <div class=AlignCenter>
+                        <a>{{ result.date }}</a>
+                        <p></p>
+{#                        <p>userID {{ user.id }}</p>#}
+{#                        <p>resultID {{ result.user_id }}</p>#}
+                        <li>Height: {{ result.height }} cm.</li>
+                        <li>Weight: {{ result.weight }} kg.</li>
+                        <li>Biceps Size: {{ result.biceps_size }} cm.</li>
+                        <li>Chest Size: {{ result.chest_size }} cm.</li>
+                        <li>Waist Size: {{ result.waist_size }} cm.</li>
+                        <p>Body Mass index: {{ result.BMI }}</p>
+{#                          <a style = "color: powderblue; text-decoration: none; "href="{% url 'edit result' result.id %}">All exercises</a>#}
+                        <form action="{% url 'edit result' result.id %}">
+                            <button class="button-list" type="submit">Edit</button>
+                             {% csrf_token %}
+                            </form>
+                            <form method="post" action="{% url 'delete result' result.id %}">
+                            {% csrf_token %}
+                            <button class="button-list" type="submit">Delete</button>
+                            </form>
+                    </div>
+                    </fieldset>
+                </div>
+         </div>
+    {% endfor %}
+{#    {% if request.user.is_staff or request.user.is_superuser %}#}
+{#        <form method="POST" >#}
+{#            <div class="card-box3">#}
+{#                <fieldset>#}
+{#                    <legend>Show result</legend>#}
+{#                            {{ form }}#}
+{#                            {% csrf_token %}#}
+{#                        {% for el in results %}#}
+{#                            {{ el.height }}#}
+{#                    {% endfor %}#}
+{#                    <button class="add-album" type="submit">Create</button>#}
+{#                </fieldset>#}
+{#            </div>#}
+{#        </form>#}
+{#    {% else %}#}
+{#        <div class="card-box3">#}
+{#            <fieldset>#}
+{#                <legend>Create exercise</legend>#}
+{#                <h3>You don't have permissions to perform this action.</h3>#}
+{#                <p></p>#}
+{#                {% csrf_token %}#}
+{#                <a style = "color: powderblue; text-decoration: none; "href="{% url 'dashboard' %}">Home</a>#}
+{#            </fieldset>#}
+{#        </div>#}
+{#    {% endif %}#}
+{% endblock %}

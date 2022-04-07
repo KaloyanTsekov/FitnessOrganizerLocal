@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    {{ form }}
+    {% csrf_token %}
+    <div class=AlignCenter>
+        <div class="card-box2">
+            <fieldset>
+                <legend>Profile Options</legend>
+                <a style = "color: powderblue; text-decoration: none; "href="{% url 'logout confirmation' %}">Logout</a>
+                <p><a style = "color: powderblue; text-decoration: none; "href="{% url 'change password'  %}">Change Password</a></p>
+                <p><a style = "color: powderblue; text-decoration: none; "href="{% url 'delete profile' user.id%}">Delete Profile</a></p>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}

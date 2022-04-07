@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box2">
+        <div class=AlignCenter>
+            <form method="POST">
+                <fieldset>
+                    <legend>Video</legend>
+                    {% csrf_token %}
+                    <p>You have successfully created your video!</p>
+                    <p></p>
+                    <li><a style = "color: powderblue; text-decoration: none;" href="{% url 'show videos' %}">Go to Videos</a></li>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

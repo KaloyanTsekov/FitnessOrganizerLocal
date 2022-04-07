@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="card-box4">
+        <form method="POST" action="{% url 'register' %}">
+            <fieldset>
+                <legend>User Registration</legend>
+    {#            <div class="container">#}
+                {{ form }}
+                {% csrf_token %}
+                <button class="add-sport" type="submit">Create new user</button>
+    {#            </div>#}
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
